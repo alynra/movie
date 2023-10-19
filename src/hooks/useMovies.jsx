@@ -14,6 +14,19 @@ const useGetMovies = (sortBy, page = 1) => {
     return dataMovies
 }
 
+const useGetDetailMovie = (id) => {
+    const [dataMovie, setDataMovie] = useState([])
+
+    useEffect(() => {
+        axios.get(`/movie/${id}`)
+            .then((res) => setDataMovie(res.data))
+            .catch((err) => console.log(err))
+    }, [id])
+
+    return dataMovie
+}
+
 export {
-    useGetMovies
+    useGetMovies,
+    useGetDetailMovie
 }
