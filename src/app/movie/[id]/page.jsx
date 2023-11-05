@@ -1,11 +1,11 @@
-"use client"
-import { useParams } from "next/navigation"
+"use client";
+
+import DetailTemp from "@/app/components/DetailMovie";
 
 export default function Page() {
-    const params = useParams()
-    return (
-        <>
-            <p>{params.id}</p>
-        </>
-    )
+  return (
+    <>
+      <DetailTemp />
+    </>
+  );
 }

@@ -1,32 +1,31 @@
-"use client"
-import { useState, useEffect } from 'react'
-import axios from '@/lib/api'
+"use client";
+import { useState, useEffect } from "react";
+import axios from "@/lib/api";
 
-const useGetMovies = (sortBy, page = 1) => {
-    const [dataMovies, setDataMovies] = useState([])
+const useGetMovies = (genre, page = 1) => {
+  const [dataMovies, setDataMovies] = useState([]);
 
-    useEffect(() => {
-        axios.get(`/discover/movie?page=${page}&sort_by=${sortBy}`)
-            .then((res) => setDataMovies(res.data))
-            .catch((err) => console.log(err))
-    }, [page, sortBy])
+  useEffect(() => {
+    axios
+      .get(`/discover/movie?page=${page}&with_genres=${genre}`)
+      .then((res) => setDataMovies(res.data))
+      .catch((err) => console.log(err));
+  }, [page, genre]);
 
-    return dataMovies
-}
+  return dataMovies;
+};
 
-const useGetDetailMovie = (id) => {
-    const [dataMovie, setDataMovie] = useState([])
+const useGetDetailMovie = (movie_id) => {
+  const [dataMovie, setDataMovie] = useState([]);
 
-    useEffect(() => {
-        axios.get(`/movie/${id}`)
-            .then((res) => setDataMovie(res.data))
-            .catch((err) => console.log(err))
-    }, [id])
+  useEffect(() => {
+    axios
+      .get(`/movie/${movie_id}`)
+      .then((res) => setDataMovie(res.data))
+      .catch((err) => console.log(err));
+  }, [movie_id]);
 
-    return dataMovie
-}
+  return dataMovie;
+};
 
-export {
-    useGetMovies,
-    useGetDetailMovie
-}
+export { useGetMovies, useGetDetailMovie };
